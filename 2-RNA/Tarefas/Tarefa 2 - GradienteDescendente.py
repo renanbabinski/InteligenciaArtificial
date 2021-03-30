@@ -15,6 +15,7 @@ def sigmoid_prime(x):
 learnrate = 0.5
 x = np.array([1, 2, 3, 4])
 y = np.array(0.5)
+b = 0.5
 
 # Initial weights
 w = np.array([0.5, -0.5, 0.3, 0.1])
@@ -24,21 +25,21 @@ w = np.array([0.5, -0.5, 0.3, 0.1])
 ###       fewer variable names than in the above sample code
 
 # TODO: Calculate the node's linear combination of inputs and weights
-h = None
+h = np.dot(x, w)+b
 
 # TODO: Calculate output of neural network
-nn_output = None
+nn_output = sigmoid(h)
 
 # TODO: Calculate error of neural network
-error = None
+error = y - nn_output
 
 # TODO: Calculate the error term
 #       Remember, this requires the output gradient, which we haven't
 #       specifically added a variable for.
-error_term = None
+error_term = error * sigmoid_prime(h)
 
 # TODO: Calculate change in weights
-del_w = None
+del_w = learnrate * error_term * x
 
 print('Neural Network output:')
 print(nn_output)
