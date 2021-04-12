@@ -1,49 +1,42 @@
 import numpy as np
 
+#Calculo da sigmóide
 def sigmoid(x):
-    """
-    Calculate sigmoid
-    """
     return 1/(1+np.exp(-x))
 
+#Derivada da função sigmoide
 def sigmoid_prime(x):
-    """
-    # Derivative of the sigmoid function
-    """
     return sigmoid(x) * (1 - sigmoid(x))
 
-learnrate = 0.5
-x = np.array([1, 2, 3, 4])
-y = np.array(0.5)
-b = 0.5
+learnrate = 0.5  #Taxa de aprendizado
+x = np.array([1, 2, 3, 4])      #Entradas da rede
+y = np.array(0.5)   #Valor esperado 
+b = 0.5             #Bias, valor de ativação do neurônio
 
-# Initial weights
+# Pesos iniciais
 w = np.array([0.5, -0.5, 0.3, 0.1])
 
-### Calculate one gradient descent step for each weight
-### Note: Some steps have been consilated, so there are
-###       fewer variable names than in the above sample code
+### Calcule um gradiente descendente para cada peso
 
-# TODO: Calculate the node's linear combination of inputs and weights
+# Produto escalar das entradas e pesos da rede
 h = np.dot(x, w)+b
 
-# TODO: Calculate output of neural network
+# Calculo das saidas da rede neural
 nn_output = sigmoid(h)
 
-# TODO: Calculate error of neural network
+# Calculo do erro da rede
 error = y - nn_output
 
-# TODO: Calculate the error term
-#       Remember, this requires the output gradient, which we haven't
-#       specifically added a variable for.
+# Calcule o termo de erro
+
 error_term = error * sigmoid_prime(h)
 
-# TODO: Calculate change in weights
+# Alterações nos pesos
 del_w = learnrate * error_term * x
 
-print('Neural Network output:')
+print('Saída da Rede Neural:')
 print(nn_output)
-print('Amount of Error:')
+print('Tamanho do erro:')
 print(error)
-print('Change in Weights:')
+print('Alterações nos pesos:')
 print(del_w)
